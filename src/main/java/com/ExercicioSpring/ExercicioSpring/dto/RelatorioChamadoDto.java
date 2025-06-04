@@ -1,6 +1,6 @@
 package com.ExercicioSpring.ExercicioSpring.dto;
 
-import com.ExercicioSpring.ExercicioSpring.Enums.EstadoChamado;
+import com.ExercicioSpring.ExercicioSpring.enums.EstadoChamado;
 
 public class RelatorioChamadoDto {
     private String nomeProduto;

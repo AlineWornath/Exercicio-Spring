@@ -1,6 +1,6 @@
 package com.ExercicioSpring.ExercicioSpring.entity;
 
-import com.ExercicioSpring.ExercicioSpring.Enums.EstadoChamado;
+import com.ExercicioSpring.ExercicioSpring.enums.EstadoChamado;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
