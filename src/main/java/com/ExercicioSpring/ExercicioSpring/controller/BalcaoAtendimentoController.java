@@ -28,7 +28,7 @@ public class BalcaoAtendimentoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(balcaoAtendimento);
     }
 
-    @GetMapping("/{id}/relatorio")
+    @GetMapping("/{id}/relatorios")
     public ResponseEntity<String> gerarRelatorioBalcao(@PathVariable String id){
         String relatorio = balcaoService.gerarRelatorioBalcao(id);
         return ResponseEntity.status(HttpStatus.OK).body(relatorio);

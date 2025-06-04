@@ -12,6 +12,7 @@ import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,6 +44,11 @@ public class ChamadoService {
         chamado.setAtendente(atendente);
         chamado.setBalcao(balcaoAtendimento);
         chamado.setDataHoraCriacao(LocalDateTime.now());
+
+        if (balcaoAtendimento.getChamados() == null) {
+            balcaoAtendimento.setChamados(new ArrayList<>());
+        }
+        balcaoAtendimento.getChamados().add(chamado);
 
         return chamadoRepository.salvar(chamado);
 
