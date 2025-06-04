@@ -11,16 +11,16 @@ import java.util.Optional;
 public class AtendenteRepository {
     private List<Atendente> atendentes = new ArrayList<>();
 
-    public List<Atendente> findAll() {
+    public List<Atendente> listarTodos() {
         return new ArrayList<>(atendentes);
     }
 
-    public Atendente save(Atendente atendente) {
+    public Atendente salvar(Atendente atendente) {
         atendentes.add(atendente);
         return atendente;
     }
 
-    public Optional<Atendente> findById(String id) {
+    public Optional<Atendente> buscarPorId(String id) {
         return atendentes.stream().filter(atendente -> atendente.getAtendenteId().equals(id)).findFirst();
     }
 }

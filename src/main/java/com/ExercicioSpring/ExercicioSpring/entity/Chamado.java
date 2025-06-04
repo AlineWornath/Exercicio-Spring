@@ -6,10 +6,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Chamado{
+public class Chamado implements Relatorio{
     @Id
     private String chamadoId = UUID.randomUUID().toString();
     private String nomeCliente;
@@ -91,12 +92,13 @@ public class Chamado{
         return dataHoraCriacao;
     }
 
-    public String gerarRelatorio(){
-        String relatorio = "Produto: " + nomeProduto + "\nEstado do chamado: " + estadoChamado;
-        return relatorio;
-    }
-
     public void setDataHoraCriacao(LocalDateTime dataHoraCriacao) {
         this.dataHoraCriacao = dataHoraCriacao;
     }
+
+    @Override
+    public String gerarRelatorio() {
+        return "Produto: " + nomeProduto + " Estado: " + estadoChamado;
+    }
+
 }

@@ -1,21 +1,22 @@
 package com.ExercicioSpring.ExercicioSpring.entity;
 
 import jakarta.persistence.*;
+
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class BalcaoAtendimento {
+public class BalcaoAtendimento implements Relatorio{
     @Id
     private String balcaoId = UUID.randomUUID().toString();
+    private String nomeLoja;
 
     @OneToMany(mappedBy = "balcao")
     private List<Atendente> atendentes;
 
     @OneToMany(mappedBy = "balcao")
     private List<Chamado> chamados;
-
-    private String nomeLoja;
 
     public BalcaoAtendimento() {
 
@@ -67,6 +68,22 @@ public class BalcaoAtendimento {
 
     public void setAtendentes(List<Atendente> atendentes) {
         this.atendentes = atendentes;
+    }
+
+    @Override
+    public String gerarRelatorio() {
+        StringBuilder relatorio = new StringBuilder();
+        relatorio.append("Nome da loja: ").append(nomeLoja).append("\n");
+        relatorio.append("Quantidade de atendimentos: ").append(chamados.size()).append("\n");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        for (Chamado chamado : chamados) {
+            String dataHora = chamado.getDataHoraCriacao().format(formatter);
+            relatorio.append("Atendente: ").append(chamado.getAtendente().getNomeUsuario()).append("\n")
+                    .append(dataHora).append("\n");
+        }
+        return relatorio.toString();
     }
 
 }
