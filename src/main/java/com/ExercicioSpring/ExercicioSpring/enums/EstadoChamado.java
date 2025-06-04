@@ -1,4 +1,4 @@
-package com.ExercicioSpring.ExercicioSpring.Enums;
+package com.ExercicioSpring.ExercicioSpring.enums;
 
 public enum EstadoChamado {
 
