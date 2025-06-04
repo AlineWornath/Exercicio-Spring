@@ -11,16 +11,16 @@ import java.util.Optional;
 public class BalcaoAtendimentoRepository {
     private List<BalcaoAtendimento> balcoes = new ArrayList<>();
 
-    public List<BalcaoAtendimento> findAll() {
+    public List<BalcaoAtendimento> listarTodos() {
         return new ArrayList<>(balcoes);
     }
 
-    public BalcaoAtendimento save(BalcaoAtendimento balcaoAtendimento) {
+    public BalcaoAtendimento salvar(BalcaoAtendimento balcaoAtendimento) {
         balcoes.add(balcaoAtendimento);
         return balcaoAtendimento;
     }
 
-    public Optional<BalcaoAtendimento> findById(String id) {
+    public Optional<BalcaoAtendimento> buscarPorId(String id) {
         return balcoes.stream().filter(balcao -> balcao.getId().equals(id)).findFirst();
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AtendenteService {
@@ -21,23 +20,23 @@ public class AtendenteService {
     BalcaoAtendimentoRepository balcaoRepository;
 
     public List<Atendente> listarTodos() {
-        return atendenteRepository.findAll();
+        return atendenteRepository.listarTodos();
     }
 
     public Atendente criarAtendente(AtendenteDto atendenteDto) {
         Atendente atendente = new Atendente();
         atendente.setNomeUsuario(atendenteDto.getNomeUsuario());
         if (atendenteDto.getBalcaoId() != null) {
-            BalcaoAtendimento balcao = balcaoRepository.findById(atendenteDto.getBalcaoId())
+            BalcaoAtendimento balcao = balcaoRepository.buscarPorId(atendenteDto.getBalcaoId())
                     .orElseThrow(() -> new RuntimeException("Balcão não encontrado!"));
             atendente.setBalcao(balcao);
         }
         atendente.setNumeroMatricula(atendente.gerarMatricula());
-        return atendenteRepository.save(atendente);
+        return atendenteRepository.salvar(atendente);
     }
 
     public Atendente buscarPorId(String atendenteId) {
-        return atendenteRepository.findById(atendenteId).
+        return atendenteRepository.buscarPorId(atendenteId).
                 orElseThrow(() -> new RuntimeException("Atendente não encontrado!"));
     }
 }
