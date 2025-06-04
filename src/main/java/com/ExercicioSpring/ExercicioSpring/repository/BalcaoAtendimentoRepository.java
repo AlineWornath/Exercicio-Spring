@@ -21,6 +21,6 @@ public class BalcaoAtendimentoRepository {
     }
 
     public Optional<BalcaoAtendimento> buscarPorId(String id) {
-        return balcoes.stream().filter(balcao -> balcao.getId().equals(id)).findFirst();
+        return balcoes.stream().filter(balcao -> balcao.getBalcaoId().equals(id)).findFirst();
     }
 }

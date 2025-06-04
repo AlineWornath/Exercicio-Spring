@@ -27,15 +27,6 @@ public class BalcaoAtendimento implements Relatorio{
     }
 
 
-    public String getId() {
-        return balcaoId;
-    }
-
-    public void setId(String id) {
-        this.balcaoId = id;
-    }
-
-
     public String getNomeLoja() {
         return nomeLoja;
     }
@@ -43,8 +34,6 @@ public class BalcaoAtendimento implements Relatorio{
     public void setNomeLoja(String nomeLoja) {
         this.nomeLoja = nomeLoja;
     }
-
-
 
     public String getBalcaoId() {
         return balcaoId;
