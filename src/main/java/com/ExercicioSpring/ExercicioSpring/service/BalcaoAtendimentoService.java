@@ -15,18 +15,18 @@ public class BalcaoAtendimentoService {
     private BalcaoAtendimentoRepository balcaoAtendimentoRepository;
 
     public List<BalcaoAtendimento> listarTodos(){
-        return balcaoAtendimentoRepository.listarTodos();
+        return balcaoAtendimentoRepository.findAll();
     }
 
     public BalcaoAtendimento criarBalcaoAtendimento(BalcaoAtendimentoDto balcaoAtendimentoDto){
         BalcaoAtendimento balcaoAtendimento = new BalcaoAtendimento();
         balcaoAtendimento.setNomeLoja(balcaoAtendimentoDto.getNomeLoja());
 
-        return balcaoAtendimentoRepository.salvar(balcaoAtendimento);
+        return balcaoAtendimentoRepository.save(balcaoAtendimento);
     }
 
     public BalcaoAtendimento buscarPorId(String balcaoId) {
-        BalcaoAtendimento balcaoAtendimento = balcaoAtendimentoRepository.buscarPorId(balcaoId).
+        BalcaoAtendimento balcaoAtendimento = balcaoAtendimentoRepository.findById(balcaoId).
                 orElseThrow(() -> new RuntimeException("Balcão não encontrado!"));
         return balcaoAtendimento;
     }

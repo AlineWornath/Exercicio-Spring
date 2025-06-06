@@ -8,11 +8,7 @@ import com.ExercicioSpring.ExercicioSpring.repository.AtendenteRepository;
 import com.ExercicioSpring.ExercicioSpring.repository.BalcaoAtendimentoRepository;
 import com.ExercicioSpring.ExercicioSpring.repository.ChamadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,34 +24,23 @@ public class ChamadoService {
     BalcaoAtendimentoRepository balcaoRepository;
 
     public List<Chamado> listarTodos() {
-        return chamadoRepository.listarTodos();
+        return chamadoRepository.findAll();
     }
 
     public Chamado criarChamado(ChamadoDto chamadoDto) {
-        Atendente atendente = atendenteRepository.buscarPorId(chamadoDto.getAtendenteId())
+        Atendente atendente = atendenteRepository.findById(chamadoDto.getAtendenteId())
                 .orElseThrow(() -> new RuntimeException("Atendente não encontrado!"));
 
-        BalcaoAtendimento balcaoAtendimento = balcaoRepository.buscarPorId(chamadoDto.getBalcaoId())
+        BalcaoAtendimento balcaoAtendimento = balcaoRepository.findById(chamadoDto.getBalcaoId())
                 .orElseThrow(() -> new RuntimeException("Balcão não encontrado!"));
 
-        Chamado chamado = new Chamado();
-        chamado.setNomeCliente(chamadoDto.getNomeCliente());
-        chamado.setNomeProduto(chamadoDto.getNomeProduto());
-        chamado.setAtendente(atendente);
-        chamado.setBalcao(balcaoAtendimento);
-        chamado.setDataHoraCriacao(LocalDateTime.now());
+        Chamado chamado = new Chamado(chamadoDto.getNomeCliente(), chamadoDto.getNomeProduto(), atendente, balcaoAtendimento);
 
-        if (balcaoAtendimento.getChamados() == null) {
-            balcaoAtendimento.setChamados(new ArrayList<>());
-        }
-        balcaoAtendimento.getChamados().add(chamado);
-
-        return chamadoRepository.salvar(chamado);
-
+        return chamadoRepository.save(chamado);
     }
 
     public Chamado buscarPorId(String id) {
-        return chamadoRepository.buscarPorId(id)
+        return chamadoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Chamado não encontrado!"));
     }
 
