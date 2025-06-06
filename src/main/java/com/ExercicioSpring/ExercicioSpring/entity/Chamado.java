@@ -1,27 +1,33 @@
 package com.ExercicioSpring.ExercicioSpring.entity;
 
 import com.ExercicioSpring.ExercicioSpring.enums.EstadoChamado;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "chamado")
 public class Chamado implements Relatorio{
     @Id
+    @Column(name = "chamado_id", columnDefinition = "CHAR(36)")
     private String chamadoId = UUID.randomUUID().toString();
     private String nomeCliente;
     private String nomeProduto;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_chamado", length = 20)
     private EstadoChamado estadoChamado;
+
     private LocalDateTime dataHoraCriacao;
 
     @ManyToOne
+    @JoinColumn(name = "atendente_id")
     private Atendente atendente;
 
     @ManyToOne
+    @JoinColumn(name = "balcao_id")
     private BalcaoAtendimento balcao;
 
 

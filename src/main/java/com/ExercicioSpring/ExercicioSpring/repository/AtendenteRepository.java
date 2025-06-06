@@ -1,26 +1,7 @@
 package com.ExercicioSpring.ExercicioSpring.repository;
 
 import com.ExercicioSpring.ExercicioSpring.entity.Atendente;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-@Repository
-public class AtendenteRepository {
-    private List<Atendente> atendentes = new ArrayList<>();
-
-    public List<Atendente> listarTodos() {
-        return new ArrayList<>(atendentes);
-    }
-
-    public Atendente salvar(Atendente atendente) {
-        atendentes.add(atendente);
-        return atendente;
-    }
-
-    public Optional<Atendente> buscarPorId(String id) {
-        return atendentes.stream().filter(atendente -> atendente.getAtendenteId().equals(id)).findFirst();
-    }
+public interface AtendenteRepository extends JpaRepository<Atendente, String> {
 }

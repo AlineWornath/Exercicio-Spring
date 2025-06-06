@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
+@Table(name = "balcao_atendimento")
 public class BalcaoAtendimento implements Relatorio{
     @Id
+    @Column(name = "balcao_id", columnDefinition = "CHAR(36)")
     private String balcaoId = UUID.randomUUID().toString();
     private String nomeLoja;
 

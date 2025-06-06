@@ -1,22 +1,22 @@
 package com.ExercicioSpring.ExercicioSpring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
 @Entity
+@Table(name = "atendente")
 public class Atendente {
     @Id
+    @Column(name = "atendente_id", columnDefinition = "CHAR(36)")
     private String atendenteId = UUID.randomUUID().toString();
     private String nomeUsuario;
     private String numeroMatricula;
 
     @ManyToOne
+    @JoinColumn(name = "balcao_id")
     private BalcaoAtendimento balcao;
 
     @OneToMany(mappedBy = "atendente")
@@ -34,10 +34,6 @@ public class Atendente {
 
     public String getAtendenteId() {
         return atendenteId;
-    }
-
-    public void setAtendenteId(String atendenteId) {
-        this.atendenteId = atendenteId;
     }
 
     public String getNomeUsuario() {
