@@ -20,23 +20,23 @@ public class AtendenteService {
     BalcaoAtendimentoRepository balcaoRepository;
 
     public List<Atendente> listarTodos() {
-        return atendenteRepository.listarTodos();
+        return atendenteRepository.findAll();
     }
 
     public Atendente criarAtendente(AtendenteDto atendenteDto) {
         Atendente atendente = new Atendente();
         atendente.setNomeUsuario(atendenteDto.getNomeUsuario());
         if (atendenteDto.getBalcaoId() != null) {
-            BalcaoAtendimento balcao = balcaoRepository.buscarPorId(atendenteDto.getBalcaoId())
+            BalcaoAtendimento balcao = balcaoRepository.findById(atendenteDto.getBalcaoId())
                     .orElseThrow(() -> new RuntimeException("Balcão não encontrado!"));
             atendente.setBalcao(balcao);
         }
         atendente.setNumeroMatricula(atendente.gerarMatricula());
-        return atendenteRepository.salvar(atendente);
+        return atendenteRepository.save(atendente);
     }
 
     public Atendente buscarPorId(String atendenteId) {
-        return atendenteRepository.buscarPorId(atendenteId).
+        return atendenteRepository.findById(atendenteId).
                 orElseThrow(() -> new RuntimeException("Atendente não encontrado!"));
     }
 }
