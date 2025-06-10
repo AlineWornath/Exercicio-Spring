@@ -23,16 +23,16 @@ import static org.mockito.ArgumentMatchers.any;
 class AtendenteServiceTest {
 
     @Mock
-    AtendenteRepository atendenteRepository;
+    private AtendenteRepository atendenteRepository;
 
     @Mock
-    BalcaoAtendimentoRepository balcaoRepository;
+    private BalcaoAtendimentoRepository balcaoRepository;
 
     @InjectMocks
     AtendenteService atendenteService;
 
     @Test
-    void deveListarAtendentes() {
+    void deveListarTodosOsAtendentes() {
         List<Atendente> atendentes = new ArrayList<>();
 
         Atendente atendente1 = new Atendente();
@@ -86,7 +86,7 @@ class AtendenteServiceTest {
 
         RuntimeException erro = Assertions.assertThrows(RuntimeException.class,
                 () -> atendenteService.criarAtendente(atendenteDto));
-        Assertions.assertTrue(erro.getMessage().contains("Balcão não encontrado!"));
+        Assertions.assertEquals("Balcão não encontrado!", erro.getMessage());
     }
 
     @Test
@@ -107,6 +107,6 @@ class AtendenteServiceTest {
 
         RuntimeException erro = Assertions.assertThrows(RuntimeException.class,
                 () -> atendenteService.buscarPorId("idInexistente"));
-        Assertions.assertTrue(erro.getMessage().contains("Atendente não encontrado!"));
+        Assertions.assertEquals("Atendente não encontrado!", erro.getMessage());
     }
 }
