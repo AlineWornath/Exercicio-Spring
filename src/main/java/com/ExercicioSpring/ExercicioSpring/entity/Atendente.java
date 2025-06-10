@@ -32,13 +32,13 @@ public class Atendente {
         this.balcao = balcao;
     }
 
-    public Atendente(String atendenteId, String nomeUsuario) {
-        this.atendenteId = atendenteId;
-        this.nomeUsuario = nomeUsuario;
-    }
 
     public String getAtendenteId() {
         return atendenteId;
+    }
+
+    public void setAtendenteId(String atendenteId) {
+        this.atendenteId = atendenteId;
     }
 
     public String getNomeUsuario() {

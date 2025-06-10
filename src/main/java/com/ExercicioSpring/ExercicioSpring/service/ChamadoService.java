@@ -15,13 +15,13 @@ import java.util.List;
 public class ChamadoService {
 
     @Autowired
-    ChamadoRepository chamadoRepository;
+    private ChamadoRepository chamadoRepository;
 
     @Autowired
-    AtendenteRepository atendenteRepository;
+    private AtendenteRepository atendenteRepository;
 
     @Autowired
-    BalcaoAtendimentoRepository balcaoRepository;
+    private BalcaoAtendimentoRepository balcaoRepository;
 
     public List<Chamado> listarTodos() {
         return chamadoRepository.findAll();

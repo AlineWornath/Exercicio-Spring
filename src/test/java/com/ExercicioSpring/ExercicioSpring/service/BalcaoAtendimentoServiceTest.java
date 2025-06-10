@@ -79,9 +79,9 @@ public class BalcaoAtendimentoServiceTest {
     void deveLancarExcecaoQuandoIdBuscadoNaoExiste() {
         Mockito.when(balcaoRepository.findById("idInexistente")).thenReturn(Optional.empty());
 
-        RuntimeException erro = Assertions.assertThrows(RuntimeException.class,
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class,
                 () -> balcaoService.buscarPorId("idInexistente"));
-        Assertions.assertEquals("Balcão não encontrado!", erro.getMessage());
+        Assertions.assertEquals("Balcão não encontrado!", exception.getMessage());
     }
 
     @Test

@@ -14,10 +14,10 @@ import java.util.List;
 public class AtendenteService {
 
     @Autowired
-    AtendenteRepository atendenteRepository;
+    private AtendenteRepository atendenteRepository;
 
     @Autowired
-    BalcaoAtendimentoRepository balcaoRepository;
+    private BalcaoAtendimentoRepository balcaoRepository;
 
     public List<Atendente> listarTodos() {
         return atendenteRepository.findAll();

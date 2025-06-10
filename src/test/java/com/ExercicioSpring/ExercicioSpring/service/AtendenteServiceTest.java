@@ -20,7 +20,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
-class AtendenteServiceTest {
+public class AtendenteServiceTest {
 
     @Mock
     private AtendenteRepository atendenteRepository;
@@ -84,14 +84,16 @@ class AtendenteServiceTest {
 
         Mockito.when(balcaoRepository.findById("balcaoInexistente")).thenReturn(Optional.empty());
 
-        RuntimeException erro = Assertions.assertThrows(RuntimeException.class,
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class,
                 () -> atendenteService.criarAtendente(atendenteDto));
-        Assertions.assertEquals("Balcão não encontrado!", erro.getMessage());
+        Assertions.assertEquals("Balcão não encontrado!", exception.getMessage());
     }
 
     @Test
     void deveBuscarAtendentePorIdComSucesso() {
-        Atendente atendente = new Atendente("12345", "Maria");
+        Atendente atendente = new Atendente();
+        atendente.setNomeUsuario("Maria");
+        atendente.setAtendenteId("12345");
 
         Mockito.when(atendenteRepository.findById("12345")).thenReturn(Optional.of(atendente));
 
@@ -105,8 +107,8 @@ class AtendenteServiceTest {
     void deveLancarExcecaoQuandoIdBuscadoNaoExiste() {
         Mockito.when(atendenteRepository.findById("idInexistente")).thenReturn(Optional.empty());
 
-        RuntimeException erro = Assertions.assertThrows(RuntimeException.class,
+        RuntimeException exception = Assertions.assertThrows(RuntimeException.class,
                 () -> atendenteService.buscarPorId("idInexistente"));
-        Assertions.assertEquals("Atendente não encontrado!", erro.getMessage());
+        Assertions.assertEquals("Atendente não encontrado!", exception.getMessage());
     }
 }
