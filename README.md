@@ -1,12 +1,25 @@
-## Configuração de Banco de Dados
+Este projeto NÃO versiona usuário e senha do banco de dados. Para definir suas credenciais no ambiente local, utilize uma das opções abaixo:
 
-Crie o arquivo `src/main/resources/application.properties` copiando o conteúdo de `application-template.properties` e preencha:
+1. Usando um arquivo local.properties (recomendado)
+   
+Crie o arquivo local.properties na pasta src/main/resources com o seguinte conteúdo:
 
-- `NOME_DO_BANCO` com o nome do seu banco
-- `SEU_USUARIO` com o seu usuário MySQL
-- `SUA_SENHA` com a sua senha do banco
+    spring.datasource.username=SEU_USUARIO
 
-**Exemplo:**
-spring.datasource.url=jdbc:mysql://localhost:3306/atendimento?createDatabaseIfNotExist=true&serverTimezone=America/Sao_Paulo
-spring.datasource.username=root
-spring.datasource.password=suasenha
+    spring.datasource.password=SUA_SENHA
+
+O arquivo local.properties já está incluído no .gitignore e NÃO deve ser adicionado ao controle de versão.
+
+2. Preenchendo diretamente no application.properties
+
+
+   Se preferir, você pode inserir suas credenciais diretamente no arquivo src/main/resources/application.properties:
+
+
+    spring.datasource.username=SEU_USUARIO
+
+    spring.datasource.password=SUA_SENHA
+
+3. Utilizando variáveis de ambiente
+   Você também pode definir as credenciais por meio de variáveis de ambiente ao rodar a aplicação.
+
