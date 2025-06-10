@@ -32,6 +32,11 @@ public class Atendente {
         this.balcao = balcao;
     }
 
+    public Atendente(String atendenteId, String nomeUsuario) {
+        this.atendenteId = atendenteId;
+        this.nomeUsuario = nomeUsuario;
+    }
+
     public String getAtendenteId() {
         return atendenteId;
     }

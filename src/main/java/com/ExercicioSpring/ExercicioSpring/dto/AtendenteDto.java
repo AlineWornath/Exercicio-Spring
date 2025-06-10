@@ -15,6 +15,7 @@ public class AtendenteDto {
     public String getBalcaoId() {
         return balcaoId;
     }
+
     public void setBalcaoId(String balcaoId) {
         this.balcaoId = balcaoId;
     }
