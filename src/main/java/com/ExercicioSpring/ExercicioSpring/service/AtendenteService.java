@@ -3,6 +3,7 @@ package com.ExercicioSpring.ExercicioSpring.service;
 import com.ExercicioSpring.ExercicioSpring.dto.AtendenteDto;
 import com.ExercicioSpring.ExercicioSpring.entity.Atendente;
 import com.ExercicioSpring.ExercicioSpring.entity.BalcaoAtendimento;
+import com.ExercicioSpring.ExercicioSpring.exception.AtendenteNotFoundException;
 import com.ExercicioSpring.ExercicioSpring.repository.AtendenteRepository;
 import com.ExercicioSpring.ExercicioSpring.repository.BalcaoAtendimentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,6 @@ public class AtendenteService {
 
     public Atendente buscarPorId(String atendenteId) {
         return atendenteRepository.findById(atendenteId).
-                orElseThrow(() -> new RuntimeException("Atendente não encontrado!"));
+                orElseThrow(() -> new AtendenteNotFoundException("Atendente não encontrado!"));
     }
 }
